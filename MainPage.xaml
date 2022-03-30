@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="MTG.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MTG"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="using:MTG.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="CardCollection" Source="{x:Bind CardViewModel.Cards}"></CollectionViewSource>
+        <DataTemplate x:Name="NameTemplate" x:DataType="models:CardModel">
+            <TextBlock x:Name ="NameBox" Text="{x:Bind Name}" FontSize="15"></TextBlock>
+        </DataTemplate>
+        <BitmapImage x:Key="CustomIcon" UriSource="/Assets/BattleIcon2.png"></BitmapImage>
+    </Page.Resources>
+    
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="91*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="203*"/>
+            <ColumnDefinition Width="547*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="FilterTextbox"                  
+                 Text=""
+                 FontSize="24"
+                 Margin="10"
+                 Height="50"
+                 Grid.Row="0"
+                 Grid.Column="0"
+                 PlaceholderText="Search for Card..."></TextBox>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="0">
+            <ListView  x:Name="titleListView" ItemsSource="{Binding Source={StaticResource CardCollection}}"
+                       ItemTemplate="{StaticResource NameTemplate}"
+                       SelectedItem="{x:Bind CardViewModel.SelectedNote, Mode=TwoWay}">
+            </ListView>
+        </ScrollViewer>
+        <Image Source="{Binding CardViewModel.CardImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+               Grid.Column="1" HorizontalAlignment="Center" Height="400"  Grid.Row="1" 
+               VerticalAlignment="Center" Width="300" RenderTransformOrigin="0.072,-0.376"/>
+    </Grid>
+
+    <Page.TopAppBar>
+        <CommandBar Background="LightBlue">
+            <AppBarButton Icon="Cancel" Click="Battle_Button_Click" ToolTipService.ToolTip="Battle!" >
+                <!--<Image Source="{StaticResource CustomIcon}"></Image>-->
+            </AppBarButton>            
+        </CommandBar>
+    </Page.TopAppBar>
+</Page>
