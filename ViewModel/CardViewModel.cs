@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media;
 
 namespace MTG.ViewModel
 {
@@ -28,7 +29,7 @@ namespace MTG.ViewModel
 
         public string CardImage { get; set; }
         public int[] cardsIndex =new int[5];
-
+        public ImageSource Source { get; set; }
 
         private CardModel _selectedNote;
 
@@ -52,8 +53,8 @@ namespace MTG.ViewModel
                    
                 }
 
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("vmContent"));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("vmTitle"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardName"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardImage"));
             }
         }
 
@@ -73,13 +74,17 @@ namespace MTG.ViewModel
             HttpClient httpClient = new HttpClient();
             var result = await httpClient.GetStringAsync(uri);
             JObject data = (JObject)JsonConvert.DeserializeObject(result);
-
+            
             RandomNumbers(data.Count, 1, cardsIndex);
             for (int i = 0; i < 1; i++)
             {
                 int index = cardsIndex[i];
+                
+                
+                
                 string name = data["cards"][index]["name"].ToString();
                 string image = data["cards"][index]["imageUrl"].ToString();
+                image = image.Replace("&", "&amp;");
                 string type = data["cards"][index]["type"].ToString();
                 string power= data["cards"][index]["power"].ToString();
                 string toughness= data["cards"][index]["toughness"].ToString();

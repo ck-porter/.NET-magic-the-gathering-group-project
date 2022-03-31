@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MTG"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="using:MTG.Models"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="using:MTG.Models" xmlns:viewmodel="using:MTG.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:CardViewModel}"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -42,7 +42,7 @@
                        SelectedItem="{x:Bind CardViewModel.SelectedNote, Mode=TwoWay}">
             </ListView>
         </ScrollViewer>
-        <Image Source="{Binding CardViewModel.CardImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <Image Source="{Binding    CardViewModel.CardImage}" 
                Grid.Column="1" HorizontalAlignment="Center" Height="400"  Grid.Row="1" 
                VerticalAlignment="Center" Width="300" RenderTransformOrigin="0.072,-0.376"/>
     </Grid>
