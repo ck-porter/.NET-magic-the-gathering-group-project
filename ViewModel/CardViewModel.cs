@@ -27,7 +27,7 @@ namespace MTG.ViewModel
         //for binding
         public string CardName { get; set; }
 
-        public string CardImage { get; set; }
+        public Uri CardImage { get; set; }
         public int[] cardsIndex =new int[5];
         public ImageSource Source { get; set; }
 
@@ -44,11 +44,11 @@ namespace MTG.ViewModel
                 if (value == null)
                 {
                     CardName = "";
-                    CardImage = "";
+                    CardImage = null;
                 }
                 else
                 {
-                    CardImage = value.Image;
+                    CardImage = new Uri(value.Image);
                     CardName = value.Name;
                    
                 }
@@ -84,7 +84,7 @@ namespace MTG.ViewModel
                 
                 string name = data["cards"][index]["name"].ToString();
                 string image = data["cards"][index]["imageUrl"].ToString();
-                image = image.Replace("&", "&amp;");
+                //image = image.Replace("&", "&amp;");
                 string type = data["cards"][index]["type"].ToString();
                 string power= data["cards"][index]["power"].ToString();
                 string toughness= data["cards"][index]["toughness"].ToString();
