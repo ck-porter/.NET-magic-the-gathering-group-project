@@ -33,5 +33,10 @@ namespace MTG
         {
             Frame.Navigate(typeof(Battle));
         }
+
+        private void Draw_Three_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(DrawThree));
+        }
     }
 }
