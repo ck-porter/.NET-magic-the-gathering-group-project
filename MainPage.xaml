@@ -51,7 +51,10 @@
         <CommandBar Background="LightBlue">
             <AppBarButton Icon="Cancel" Click="Battle_Button_Click" ToolTipService.ToolTip="Battle!" >
                 <!--<Image Source="{StaticResource CustomIcon}"></Image>-->
-            </AppBarButton>            
+            </AppBarButton>
+            <AppBarButton Icon="Add" Click="Draw_Three_Click" ToolTipService.ToolTip="Draw Three!" >
+                <!--<Image Source="{StaticResource CustomIcon}"></Image>-->
+            </AppBarButton>
         </CommandBar>
     </Page.TopAppBar>
 </Page>

@@ -26,5 +26,11 @@ namespace MTG.Models
             Power = power;  
             Toughness = toughness;  
         }
+
+        public CardModel(string name, string image)
+        {
+            Name = name;
+            Image = image;
+        }
     }
 }

@@ -86,11 +86,20 @@ namespace MTG.ViewModel
                 string image = data["cards"][index]["imageUrl"].ToString();
                 //image = image.Replace("&", "&amp;");
                 string type = data["cards"][index]["type"].ToString();
-                string power= data["cards"][index]["power"].ToString();
-                string toughness= data["cards"][index]["toughness"].ToString();
-                CardModel card = new CardModel(name,image,type,power,toughness);
+                string power = data["cards"][index]["power"].ToString();
+                string toughness = data["cards"][index]["toughness"].ToString();
+                CardModel card = new CardModel(name, image, type, power, toughness);
                 _allCards.Add(card);
                 Cards.Add(card);
+
+                //using new model
+
+                //int index = cardsIndex[i];
+                //string name = data["cards"][index]["name"].ToString();
+                //string image = data["cards"][index]["imageUrl"].ToString();
+                //CardModel card = new CardModel(name, image);
+                //_allCards.Add(card);
+                //Cards.Add(card);
             }
 
         }
