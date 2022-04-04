@@ -28,7 +28,7 @@ namespace MTG.ViewModel
         //for binding
         public string CardName { get; set; }
         public BitmapImage CardImageSource { get; set; }
-        public Uri CardImage { get; set; }
+        private Uri _imageUri;
         public int[] cardsIndex =new int[5];
         public ImageSource Source { get; set; }
 
@@ -45,19 +45,17 @@ namespace MTG.ViewModel
                 if (value == null)
                 {
                     CardName = "";
-                    CardImage = null;
                     CardImageSource = null;
                 }
                 else
-                {
-                    CardImage = new Uri(value.Image);
+                {                    
                     CardName = value.Name;
-                    CardImageSource = new BitmapImage(CardImage);
+                    _imageUri = new Uri(value.Image);
+                    CardImageSource = new BitmapImage(_imageUri);
                    
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardName"));
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardImage"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardImageSource"));
             }
         }
