@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace MTG.ViewModel
 {
@@ -26,7 +27,7 @@ namespace MTG.ViewModel
 
         //for binding
         public string CardName { get; set; }
-
+        public BitmapImage CardImageSource { get; set; }
         public Uri CardImage { get; set; }
         public int[] cardsIndex =new int[5];
         public ImageSource Source { get; set; }
@@ -45,16 +46,19 @@ namespace MTG.ViewModel
                 {
                     CardName = "";
                     CardImage = null;
+                    CardImageSource = null;
                 }
                 else
                 {
                     CardImage = new Uri(value.Image);
                     CardName = value.Name;
+                    CardImageSource = new BitmapImage(CardImage);
                    
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardName"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardImage"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardImageSource"));
             }
         }
 

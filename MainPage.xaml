@@ -42,7 +42,7 @@
                        SelectedItem="{x:Bind CardViewModel.SelectedNote, Mode=TwoWay}">
             </ListView>
         </ScrollViewer>
-        <Image Source="{Binding CardViewModel.CardImage}" 
+        <Image Source="{x:Bind CardViewModel.CardImageSource, Mode=TwoWay}" 
                Grid.Column="1" HorizontalAlignment="Center" Height="400"  Grid.Row="1" 
                VerticalAlignment="Center" Width="300" RenderTransformOrigin="0.072,-0.376"/>
     </Grid>
