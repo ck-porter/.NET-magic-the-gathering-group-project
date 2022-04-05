@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
@@ -30,6 +31,8 @@ namespace MTG.ViewModel
         public BitmapImage CardImageSource { get; set; }
         private Uri _imageUri;
         public int[] cardsIndex =new int[5];
+        public string CardColor { get; set; }
+        string color { get; set; }
         public ImageSource Source { get; set; }
 
         private CardModel _selectedNote;
@@ -46,17 +49,20 @@ namespace MTG.ViewModel
                 {
                     CardName = "";
                     CardImageSource = null;
+                    CardColor = "White";
                 }
                 else
                 {                    
                     CardName = value.Name;
                     _imageUri = new Uri(value.Image);
                     CardImageSource = new BitmapImage(_imageUri);
+                    CardColor = value.Color;
                    
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardName"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardImageSource"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardColor"));
             }
         }
 
@@ -80,7 +86,7 @@ namespace MTG.ViewModel
         {
             Cards = new ObservableCollection<CardModel>();
             _allCards = new List<CardModel> ();
-            GetCards(5);
+            GetCards(100);
 
             PerformFiltering();
 
@@ -103,10 +109,30 @@ namespace MTG.ViewModel
                 JToken test = data["cards"][index]["imageUrl"] as JToken;
                 if (test != null)
                 {
+                
 
                     string name = data["cards"][index]["name"].ToString();
                     string image = data["cards"][index]["imageUrl"].ToString();
-                    CardModel card = new CardModel(name, image);
+                    string checkColor = data["cards"][index]["colors"][0].ToString();
+
+                    switch (checkColor) {
+
+                        case "Blue":
+                            color = "#0075BD";
+                            break;
+                        case "White":
+                            color = "#F6E9D2";
+                            break;
+                        case "Black":
+                            color = "#3D3D3D";
+                            break;
+                        case "Green":
+                            color = "#228C22";
+                            break;          
+
+                    }
+                 
+                    CardModel card = new CardModel(name, image, color);
                     _allCards.Add(card);
                     Cards.Add(card);
                     number--;

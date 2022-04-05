@@ -27,6 +27,7 @@ namespace MTG
         {
             this.InitializeComponent();
             this.CardViewModel = new ViewModel.CardViewModel();
+            CardViewModel.CardColor = "White";
         }
 
         private void Battle_Button_Click(object sender, RoutedEventArgs e)

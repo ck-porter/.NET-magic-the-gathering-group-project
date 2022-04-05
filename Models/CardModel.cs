@@ -18,6 +18,8 @@ namespace MTG.Models
 
         public string Toughness { get; set; }  //health points
 
+        public string Color { get; set; }
+
         public CardModel(string name, string image, string type, string power, string toughness) 
         {
             Name = name;
@@ -27,10 +29,11 @@ namespace MTG.Models
             Toughness = toughness;  
         }
 
-        public CardModel(string name, string image)
+        public CardModel(string name, string image, string color)
         {
             Name = name;
             Image = image;
+            Color = color;
         }
     }
 }

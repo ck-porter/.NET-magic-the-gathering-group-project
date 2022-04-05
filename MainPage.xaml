@@ -31,7 +31,7 @@
                  Text="{x:Bind CardViewModel.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  FontSize="24"
                  Margin="10"
-                 Height="50"
+                 Height="45"
                  Grid.Row="0"
                  Grid.Column="0"
                  PlaceholderText="Search for Card..."></TextBox>
@@ -42,13 +42,17 @@
                        SelectedItem="{x:Bind CardViewModel.SelectedNote, Mode=TwoWay}">
             </ListView>
         </ScrollViewer>
+        <Border Grid.Row="1" Grid.Column="1" Background="{x:Bind CardViewModel.CardColor, Mode=TwoWay}"></Border>
         <Image Source="{x:Bind CardViewModel.CardImageSource, Mode=TwoWay}" 
                Grid.Column="1" HorizontalAlignment="Center" Height="400"  Grid.Row="1" 
                VerticalAlignment="Center" Width="300" RenderTransformOrigin="0.072,-0.376"/>
+     
+        <!--<Border Grid.Row="1" Grid.Column="1" Background="Brown"></Border>-->
+        
     </Grid>
 
     <Page.TopAppBar>
-        <CommandBar Background="LightBlue">
+        <CommandBar Background="{x:Bind CardViewModel.CardColor, Mode=TwoWay}">
             <AppBarButton Icon="Cancel" Click="Battle_Button_Click" ToolTipService.ToolTip="Battle!" >
                 <!--<Image Source="{StaticResource CustomIcon}"></Image>-->
             </AppBarButton>
