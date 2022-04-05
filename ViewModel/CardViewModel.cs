@@ -60,12 +60,30 @@ namespace MTG.ViewModel
             }
         }
 
+        private string _filter;
+        public string Filter
+        {
+            get { return _filter; }
+            set
+            {
+                if (value == _filter) { return; }
+
+                _filter = value;
+
+                PerformFiltering();
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Filter)));
+            }
+        }
+
         public CardViewModel()
         {
             Cards = new ObservableCollection<CardModel>();
             _allCards = new List<CardModel> ();
             GetCards(5);
-            
+
+            PerformFiltering();
+
         }
 
 
@@ -98,6 +116,39 @@ namespace MTG.ViewModel
                 }
 
                 } while (number>0);
+        }
+
+        private void PerformFiltering()
+        {
+            if (_filter == null)
+            {
+                _filter = "";
+            }
+
+            var lowerCaseFilter = Filter.ToLowerInvariant().Trim();
+
+            var result =
+                _allCards.Where(d => d.Name.ToLowerInvariant()
+                .Contains(lowerCaseFilter))
+                .ToList();
+
+            var toRemove = Cards.Except(result).ToList();
+
+            foreach (var x in toRemove)
+            {
+                Cards.Remove(x);
+            }
+
+            var resultCount = result.Count;
+
+            for (int i = 0; i < resultCount; i++)
+            {
+                var resultItem = result[i];
+                if (i + 1 > Cards.Count || !Cards[i].Equals(resultItem))
+                {
+                    Cards.Insert(i, resultItem);
+                }
+            }
         }
 
     }

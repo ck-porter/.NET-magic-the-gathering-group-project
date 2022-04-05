@@ -28,7 +28,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBox x:Name="FilterTextbox"                  
-                 Text=""
+                 Text="{x:Bind CardViewModel.Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  FontSize="24"
                  Margin="10"
                  Height="50"
