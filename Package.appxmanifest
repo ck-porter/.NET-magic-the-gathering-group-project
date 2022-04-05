@@ -38,7 +38,7 @@
         Description="MTG"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-        <uap:SplashScreen Image="Assets\mtg.jpg"  BackgroundColor="green"/>
+        <uap:SplashScreen Image="Assets\mtg.jpg"  BackgroundColor="#C4A484"/>
       </uap:VisualElements>
     </Application>
   </Applications>

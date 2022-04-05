@@ -11,13 +11,13 @@
     <Page.Resources>
         <CollectionViewSource x:Name="CardCollection" Source="{x:Bind CardViewModel.Cards}"></CollectionViewSource>
         <DataTemplate x:Name="NameTemplate" x:DataType="models:CardModel">
-            <TextBlock x:Name ="NameBox" Text="{x:Bind Name}" FontSize="15"></TextBlock>
+            <TextBlock x:Name ="NameBox" Text="{x:Bind Name}" FontSize="20"></TextBlock>
         </DataTemplate>
         <BitmapImage x:Key="CustomIcon" UriSource="/Assets/BattleIcon2.png"></BitmapImage>
     </Page.Resources>
-    
 
-    <Grid>
+
+    <Grid BorderBrush="Black" BorderThickness="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"/>
             <RowDefinition Height="91*"/>
@@ -36,19 +36,16 @@
                  Grid.Column="0"
                  PlaceholderText="Search for Card..."></TextBox>
 
-        <ScrollViewer Grid.Row="1" Grid.Column="0">
+        <ScrollViewer Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="1" Background="{x:Bind CardViewModel.BackgroundColor, Mode=TwoWay}">
             <ListView  x:Name="titleListView" ItemsSource="{Binding Source={StaticResource CardCollection}}"
                        ItemTemplate="{StaticResource NameTemplate}"
                        SelectedItem="{x:Bind CardViewModel.SelectedNote, Mode=TwoWay}">
             </ListView>
         </ScrollViewer>
-        <Border Grid.Row="1" Grid.Column="1" Background="{x:Bind CardViewModel.CardColor, Mode=TwoWay}"></Border>
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1" Background="{x:Bind CardViewModel.CardColor, Mode=TwoWay}"  ></Border>
         <Image Source="{x:Bind CardViewModel.CardImageSource, Mode=TwoWay}" 
                Grid.Column="1" HorizontalAlignment="Center" Height="400"  Grid.Row="1" 
-               VerticalAlignment="Center" Width="300" RenderTransformOrigin="0.072,-0.376"/>
-     
-        <!--<Border Grid.Row="1" Grid.Column="1" Background="Brown"></Border>-->
-        
+               VerticalAlignment="Center" Width="300" RenderTransformOrigin="0.072,-0.376"/>      
     </Grid>
 
     <Page.TopAppBar>

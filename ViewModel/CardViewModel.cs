@@ -32,7 +32,9 @@ namespace MTG.ViewModel
         private Uri _imageUri;
         public int[] cardsIndex =new int[5];
         public string CardColor { get; set; }
+        public string BackgroundColor { get; set; }
         string color { get; set; }
+        string color2 { get; set; }
         public ImageSource Source { get; set; }
 
         private CardModel _selectedNote;
@@ -50,6 +52,7 @@ namespace MTG.ViewModel
                     CardName = "";
                     CardImageSource = null;
                     CardColor = "White";
+                    BackgroundColor = "White";
                 }
                 else
                 {                    
@@ -57,12 +60,14 @@ namespace MTG.ViewModel
                     _imageUri = new Uri(value.Image);
                     CardImageSource = new BitmapImage(_imageUri);
                     CardColor = value.Color;
+                    BackgroundColor = value.Color2;
                    
                 }
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardName"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardImageSource"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CardColor"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BackgroundColor"));
             }
         }
 
@@ -86,8 +91,7 @@ namespace MTG.ViewModel
         {
             Cards = new ObservableCollection<CardModel>();
             _allCards = new List<CardModel> ();
-            GetCards(100);
-
+            GetCards(1000);
             PerformFiltering();
 
         }
@@ -116,23 +120,25 @@ namespace MTG.ViewModel
                     string checkColor = data["cards"][index]["colors"][0].ToString();
 
                     switch (checkColor) {
-
                         case "Blue":
-                            color = "#0075BD";
+                            color = "#0075BD";                           
+                            color2 = "#CDEEFD";
                             break;
                         case "White":
                             color = "#F6E9D2";
+                            color2 = "#fffdeb";                          
                             break;
                         case "Black":
-                            color = "#3D3D3D";
+                            color = "#3D3D3D";                        
+                            color2 = "LightGray";
                             break;
                         case "Green":
                             color = "#228C22";
-                            break;          
-
+                            color2 = "#228C22";                         
+                            break;
                     }
                  
-                    CardModel card = new CardModel(name, image, color);
+                    CardModel card = new CardModel(name, image, color, color2);
                     _allCards.Add(card);
                     Cards.Add(card);
                     number--;
