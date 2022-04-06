@@ -45,7 +45,7 @@
         <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="1" Background="{x:Bind CardViewModel.CardColor, Mode=TwoWay}"  ></Border>
         <Image Source="{x:Bind CardViewModel.CardImageSource, Mode=TwoWay}" 
                Grid.Column="1" HorizontalAlignment="Center" Height="400"  Grid.Row="1" 
-               VerticalAlignment="Center" Width="300" RenderTransformOrigin="0.072,-0.376"/>      
+               VerticalAlignment="Center" Width="300" RenderTransformOrigin="0.072,-0.376"/>
     </Grid>
 
     <Page.TopAppBar>
@@ -56,6 +56,14 @@
             <AppBarButton Icon="Add" Click="Draw_Three_Click" ToolTipService.ToolTip="Draw Three!" >
                 <!--<Image Source="{StaticResource CustomIcon}"></Image>-->
             </AppBarButton>
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="About" Click="About_Click"/>
+                <AppBarButton Label="Draw Three" Click="Draw_3_Click" />
+                <AppBarButton Label="Exit" Click="Exit_Click"/>
+            </CommandBar.SecondaryCommands>
+
         </CommandBar>
     </Page.TopAppBar>
 </Page>
+

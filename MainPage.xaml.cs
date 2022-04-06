@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using MTG.View;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -39,6 +40,23 @@ namespace MTG
         private void Draw_Three_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(DrawThree));
+        }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+
+            Frame.Navigate(typeof(About));
+        }
+
+
+        private void Draw_3_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
         }
     }
 }
