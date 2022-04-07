@@ -26,15 +26,17 @@
         <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"
                    FontSize="30" Height="40" Width="255">Second Card Name</TextBlock>
 
-        <Image x:Name="Card1" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,498,0"></Image>
-        <Image x:Name="Card2" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Margin="4,0,0,0"></Image>
+        <Image x:Name="Card1" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="4"
+               ></Image>
+        <Image x:Name="Card2" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Margin="4"
+               ></Image>
         
         <!---This will be the winner after the battle, the images from card 1 and card 2 will be removed, the winning card placed
         in the middle row/col-->
         <Image x:Name="Winner" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Margin="4,0,0,0"></Image>
 
         <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"
-                FontSize="36" Height="61" Width="121">Fight!!</Button>
+                FontSize="36" Height="61" Width="121" Click="Button_Click">Fight!!</Button>
         
     </Grid>
     <Page.TopAppBar>

@@ -23,7 +23,7 @@ namespace MTG.ViewModel
 
         public List<CardModel> _allCards;
 
-        public ObservableCollection<RollModel> Rolls{ get; set; }
+        //public ObservableCollection<RollModel> Rolls{ get; set; }
 
         public ObservableCollection<CardModel> Cards { get; set; }
 
@@ -65,10 +65,10 @@ namespace MTG.ViewModel
         public CardViewModel()
         {
             Cards = new ObservableCollection<CardModel>();
-            Rolls=new ObservableCollection<RollModel>();
+            //Rolls=new ObservableCollection<RollModel>();
             _allCards = new List<CardModel> ();
             GetCards(5);
-            GetRoleCards(2);
+            //GetRoleCards(2);
 
 
         }
@@ -106,7 +106,7 @@ namespace MTG.ViewModel
                 } while (number>0);
         }
 
-        public async void GetRoleCards(int number)
+        public async Task GetRoleCards(int number, List<RollModel> roles)
         {
             Uri baseURI = new Uri("https://api.magicthegathering.io/v1/cards/");
             Uri uri = new Uri(baseURI.ToString());
@@ -133,7 +133,7 @@ namespace MTG.ViewModel
                     string toughness= data["cards"][index]["toughness"].ToString();
                     string type = data["cards"][index]["type"].ToString();
                     RollModel newRoll = new RollModel(name, image, type, power, toughness);
-                    Rolls.Add(newRoll);
+                    roles.Add(newRoll);
                     number--;
 
                 }
