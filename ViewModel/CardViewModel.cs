@@ -23,6 +23,8 @@ namespace MTG.ViewModel
 
         public List<CardModel> _allCards;
 
+        public ObservableCollection<RollModel> Rolls{ get; set; }
+
         public ObservableCollection<CardModel> Cards { get; set; }
 
         //for binding
@@ -63,9 +65,12 @@ namespace MTG.ViewModel
         public CardViewModel()
         {
             Cards = new ObservableCollection<CardModel>();
+            Rolls=new ObservableCollection<RollModel>();
             _allCards = new List<CardModel> ();
             GetCards(5);
-            
+            GetRoleCards(2);
+
+
         }
 
 
@@ -88,6 +93,7 @@ namespace MTG.ViewModel
 
                     string name = data["cards"][index]["name"].ToString();
                     string image = data["cards"][index]["imageUrl"].ToString();
+                    string color = data["cards"][index]["colors"][0].ToString();
                     CardModel card = new CardModel(name, image);
                     _allCards.Add(card);
                     Cards.Add(card);
@@ -98,6 +104,45 @@ namespace MTG.ViewModel
                 }
 
                 } while (number>0);
+        }
+
+        public async void GetRoleCards(int number)
+        {
+            Uri baseURI = new Uri("https://api.magicthegathering.io/v1/cards/");
+            Uri uri = new Uri(baseURI.ToString());
+            HttpClient httpClient = new HttpClient();
+            var result = await httpClient.GetStringAsync(uri);
+            JObject data = (JObject)JsonConvert.DeserializeObject(result);
+            int count = data["cards"].Count();
+            Random rm = new Random();
+
+
+            do
+            {
+                int index = rm.Next(count);
+                JToken img = data["cards"][index]["imageUrl"] as JToken;
+                JToken pow = data["cards"][index]["power"] as JToken;
+                JToken toug = data["cards"][index]["toughness"] as JToken;
+                JToken ty = data["cards"][index]["type"] as JToken;
+                if (img != null && pow!=null && toug != null && ty != null)
+                {
+                    
+                    string name = data["cards"][index]["name"].ToString();
+                    string image = data["cards"][index]["imageUrl"].ToString();
+                    string power = data["cards"][index]["power"].ToString();
+                    string toughness= data["cards"][index]["toughness"].ToString();
+                    string type = data["cards"][index]["type"].ToString();
+                    RollModel newRoll = new RollModel(name, image, type, power, toughness);
+                    Rolls.Add(newRoll);
+                    number--;
+
+                }
+                else
+                {
+
+                }
+
+            } while (number > 0);
         }
 
     }

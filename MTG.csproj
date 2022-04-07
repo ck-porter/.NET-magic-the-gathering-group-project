@@ -130,6 +130,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\CardModel.cs" />
+    <Compile Include="Models\RollModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CardViewModel.cs" />
   </ItemGroup>

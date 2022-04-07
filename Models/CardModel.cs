@@ -12,20 +12,6 @@ namespace MTG.Models
 
         public string Image { get; set; }
 
-        public string Type { get; set; }
-
-        public string Power { get; set; }  //attack damage
-
-        public string Toughness { get; set; }  //health points
-
-        public CardModel(string name, string image, string type, string power, string toughness) 
-        {
-            Name = name;
-            Image = image;
-            Type = type;
-            Power = power;  
-            Toughness = toughness;  
-        }
 
         public CardModel(string name, string image)
         {
