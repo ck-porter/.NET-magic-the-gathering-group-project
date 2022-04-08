@@ -26,10 +26,17 @@
         <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"
                    FontSize="30" Height="40" Width="255">Second Card Name</TextBlock>
 
-        <Image x:Name="Card1" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="4"
-               ></Image>
-        <Image x:Name="Card2" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Margin="4"
-               ></Image>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
+            <TextBlock x:Name="Power1" Text="Power: " FontSize="25" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="Toughness1" Text="Toughness: " FontSize="25" HorizontalAlignment="Center"></TextBlock>
+            <Image x:Name="Card1"  Margin="4"></Image>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
+            <TextBlock x:Name="Power2" Text="Power: " FontSize="25" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="Toughness2" Text="Toughness: " FontSize="25" HorizontalAlignment="Center"></TextBlock>
+            <Image x:Name="Card2"  Margin="4"></Image>
+        </StackPanel>
         
         <!---This will be the winner after the battle, the images from card 1 and card 2 will be removed, the winning card placed
         in the middle row/col-->

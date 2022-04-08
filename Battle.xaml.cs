@@ -51,6 +51,12 @@ namespace MTG
             // display the cards with the Image values
             Card1.Source = new BitmapImage(new Uri(roles[0].Image));
             Card2.Source = new BitmapImage(new Uri(roles[1].Image));
+
+            // display properties
+            Power1.Text += roles[0].Power;
+            Toughness1.Text += roles[0].Toughness;
+            Power2.Text += roles[1].Power;
+            Toughness2.Text += roles[1].Toughness;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -111,26 +117,9 @@ namespace MTG
                 Winner.Source = Card1.Source;
             } else
             {
-                Winner.Source = Card1.Source;
+                Winner.Source = Card2.Source;
             }
 
-            //int hp2AftFirst = toughness2 - power1;
-            //int hp1AftSecond = toughness1 - power2;
-
-
-            //if (hp2AftFirst <= 0)
-            //{
-            //    Winner.Source = Card1.Source;
-
-            //} else if (hp1AftSecond <= 0)
-            //{
-            //    Winner.Source = Card2.Source;
-
-            //} else if (power1 >= hp2AftFirst)
-            //{
-            //    Winner.Source = Card1.Source;
-            //}
-            
         }
 
         // draw cards that have all needed properties from the api
