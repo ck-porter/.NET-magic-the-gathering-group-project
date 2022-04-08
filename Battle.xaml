@@ -29,20 +29,20 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
             <TextBlock x:Name="Power1" Text="Power: " FontSize="25" HorizontalAlignment="Center"></TextBlock>
             <TextBlock x:Name="Toughness1" Text="Toughness: " FontSize="25" HorizontalAlignment="Center"></TextBlock>
-            <Image x:Name="Card1"  Margin="4"></Image>
+            <Image x:Name="Card1"  Margin="10"></Image>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
             <TextBlock x:Name="Power2" Text="Power: " FontSize="25" HorizontalAlignment="Center"></TextBlock>
             <TextBlock x:Name="Toughness2" Text="Toughness: " FontSize="25" HorizontalAlignment="Center"></TextBlock>
-            <Image x:Name="Card2"  Margin="4"></Image>
+            <Image x:Name="Card2"  Margin="10"></Image>
         </StackPanel>
 
         <!---This will be the winner after the battle, the images from card 1 and card 2 will be removed, the winning card placed
         in the middle row/col-->
         <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
             <TextBlock x:Name="ShowWinner" FontSize="30" FontWeight="Bold" Foreground="BlueViolet" HorizontalAlignment="Center"></TextBlock>
-            <Image x:Name="Winner" Margin="4"></Image>
+            <Image x:Name="Winner" Margin="10"></Image>
         </StackPanel>
 
         <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"
