@@ -53,13 +53,11 @@
             <AppBarButton Icon="Favorite" Click="Battle_Button_Click" ToolTipService.ToolTip="Battle!" >
                 <!--<Image Source="{StaticResource CustomIcon}"></Image>-->
             </AppBarButton>
-            <AppBarButton Icon="Add" Click="Draw_Three_Click" ToolTipService.ToolTip="Draw Three!" >
-                <!--<Image Source="{StaticResource CustomIcon}"></Image>-->
-            </AppBarButton>
+           
 
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="About" Click="About_Click"/>
-                <AppBarButton Label="Draw Three" Click="Draw_3_Click" />
+              
                 <AppBarButton Label="Exit" Click="Exit_Click"/>
             </CommandBar.SecondaryCommands>
 
