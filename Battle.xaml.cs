@@ -115,11 +115,15 @@ namespace MTG
             if (hp2 <= 0)
             {
                 Winner.Source = Card1.Source;
+                ShowWinner.Text = "<- Winner";
             } else
             {
                 Winner.Source = Card2.Source;
+                ShowWinner.Text = "Winner ->";
             }
 
+            Card1.Source = null;
+            Card2.Source = null;
         }
 
         // draw cards that have all needed properties from the api
