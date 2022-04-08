@@ -52,7 +52,9 @@ namespace MTG
             Card1.Source = new BitmapImage(new Uri(roles[0].Image));
             Card2.Source = new BitmapImage(new Uri(roles[1].Image));
 
-            // display properties
+            // display names and properties
+            CardName1.Text = roles[0].Name;
+            CardName2.Text = roles[1].Name;
             Power1.Text += roles[0].Power;
             Toughness1.Text += roles[0].Toughness;
             Power2.Text += roles[1].Power;
@@ -115,15 +117,14 @@ namespace MTG
             if (hp2 <= 0)
             {
                 Winner.Source = Card1.Source;
-                ShowWinner.Text = "<- Winner";
             } else
             {
                 Winner.Source = Card2.Source;
-                ShowWinner.Text = "Winner ->";
             }
 
             Card1.Source = null;
             Card2.Source = null;
+            ShowWinner.Text = "Winner:";
         }
 
         // draw cards that have all needed properties from the api
@@ -145,7 +146,7 @@ namespace MTG
                 JToken pow = data["cards"][index]["power"] as JToken;
                 JToken toug = data["cards"][index]["toughness"] as JToken;
                 JToken ty = data["cards"][index]["type"] as JToken;
-                if (img != null && pow != null && toug != null && ty != null)
+                if (img != null && pow != null && toug != null && ty != null && pow.ToString() != "*")
                 {
 
                     string name = data["cards"][index]["name"].ToString();
