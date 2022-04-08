@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTG.Models
 {
-    public class RollModel
+    public class CharacterModel
     {
         public string Name { get; set; }
 
@@ -17,7 +17,7 @@ namespace MTG.Models
 
         public string Toughness { get; set; }  //health points
 
-        public RollModel(string name, string image, string type, string power, string toughness)
+        public CharacterModel(string name, string image, string type, string power, string toughness)
         {
             Name = name;
             Image = image;
