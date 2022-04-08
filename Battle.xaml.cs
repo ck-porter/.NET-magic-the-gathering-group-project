@@ -113,7 +113,8 @@ namespace MTG
                 hp1 -= power2;
 
             } while (hp1 > 0 && hp2 > 0);
-
+            
+            // determine who's the winner and display that card image in the middle
             if (hp2 <= 0)
             {
                 Winner.Source = Card1.Source;
@@ -123,9 +124,13 @@ namespace MTG
                 Winner.Source = Card2.Source;
             }
 
+            // remove the cards on two sides
             Card1.Source = null;
             Card2.Source = null;
+            // show winner text
             ShowWinner.Text = "Winner:";
+            // disable the button
+            FightBtn.IsEnabled = false;
         }
 
         // draw cards that have all needed properties from the api

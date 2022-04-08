@@ -45,7 +45,7 @@
             <Image x:Name="Winner" Margin="10"></Image>
         </StackPanel>
 
-        <Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"
+        <Button x:Name="FightBtn" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center"
                 FontSize="36" Height="61" Width="121" Click="Button_Click">Fight!!</Button>
 
     </Grid>
