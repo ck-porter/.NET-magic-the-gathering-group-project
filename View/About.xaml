@@ -9,15 +9,63 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBox x:Name="About_Info_Detail" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" Text="App Created By:  Yue Niu, CK Porter, Jade Ye and Paul Oteng&#xD;&#xD;Creation Date:  04/06/2022&#xD;&#xD;Contact Information: w0286867@nscc.ca (CK Porter), w0430394@nscc.ca (Jade Ye), w0425445@nscc.ca (Paul Oteng), w0403665@nscc.ca (Yue Niu)&#xD;&#x9;&#x9;" VerticalAlignment="Center" Height="113" Width="827" BorderThickness="0,0,0,0" FontWeight="Bold" FontFamily="Arial"/>
+    <Page.Resources>
+        <Storyboard x:Key="GradientAnimation" RepeatBehavior="Forever" SpeedRatio="0.2">
+            <ColorAnimationUsingKeyFrames
+                Storyboard.TargetName="AboutPageGrid"
+                Storyboard.TargetProperty="(UIElement.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
+                EnableDependentAnimation="True"
+                BeginTime="-0:0:0.5">
+                <LinearColorKeyFrame KeyTime="0:0:0" Value="#FF0000"/>
+                <LinearColorKeyFrame KeyTime="0:0:1" Value="#FFFF00"/>
+                <LinearColorKeyFrame KeyTime="0:0:2" Value="#00FF00"/>
+                <LinearColorKeyFrame KeyTime="0:0:3" Value="#00FFFF"/>
+                <LinearColorKeyFrame KeyTime="0:0:4" Value="#0000FF"/>
+                <LinearColorKeyFrame KeyTime="0:0:5" Value="#FF00FF"/>
+                <LinearColorKeyFrame KeyTime="0:0:6" Value="#FF0000"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames
+                Storyboard.TargetName="AboutPageGrid"
+                Storyboard.TargetProperty="(UIElement.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)"
+                EnableDependentAnimation="True">
+                <LinearColorKeyFrame KeyTime="0:0:0" Value="#FF0000"/>
+                <LinearColorKeyFrame KeyTime="0:0:1" Value="#FFFF00"/>
+                <LinearColorKeyFrame KeyTime="0:0:2" Value="#00FF00"/>
+                <LinearColorKeyFrame KeyTime="0:0:3" Value="#00FFFF"/>
+                <LinearColorKeyFrame KeyTime="0:0:4" Value="#0000FF"/>
+                <LinearColorKeyFrame KeyTime="0:0:5" Value="#FF00FF"/>
+                <LinearColorKeyFrame KeyTime="0:0:6" Value="#FF0000"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
 
+    <Grid x:Name="AboutPageGrid">
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Offset="0"/> <!--calling the effect of the resourse[0]-->
+                <GradientStop Offset="1"/> <!--calling the effect of the resourse [1]-->
+            </LinearGradientBrush>
+        </Grid.Background>
 
+        <StackPanel VerticalAlignment="Center" Margin="10,0">
 
+            <TextBlock
+                x:Name="AboutText"
+                Margin="6"
+                FontSize="25"
+                Foreground="Black"
+                FontFamily="Consolas"
+                >
+                App Created By:  Yue Niu, CK Porter, Jade Ye and Paul Oteng;
+                <LineBreak/>
+                 Creation Date:  04/06/2022
+                <LineBreak/>
+                 Contact Information: w0286867@nscc.ca (CK Porter), w0430394@nscc.ca (Jade Ye), w0425445@nscc.ca (Paul Oteng), w0403665@nscc.ca (Yue Niu)
+            </TextBlock>
+
+            <Button x:Name="WarriorButton" Content="Click me Warrior!" Click="Button_Click_Sound" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,0,0,2" FontFamily="Tempus Sans ITC"/>
+
+        </StackPanel>
     </Grid>
 
 
@@ -34,6 +82,7 @@
             </CommandBar.Content>
 
             <CommandBar.SecondaryCommands>
+                
                 <AppBarButton Label="Exit" Click="Exit_Click"/>
             </CommandBar.SecondaryCommands>
 

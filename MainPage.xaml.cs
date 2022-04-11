@@ -35,18 +35,13 @@ namespace MTG
         private void Battle_Button_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Battle));
-        }
-
-      
+        }   
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
 
             Frame.Navigate(typeof(About));
         }
-
-
-     
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
