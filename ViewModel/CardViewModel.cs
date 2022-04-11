@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Windows.Foundation.Collections;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -30,7 +31,7 @@ namespace MTG.ViewModel
         public string CardName { get; set; }
         public BitmapImage CardImageSource { get; set; }
         private Uri _imageUri;
-        public int[] cardsIndex =new int[5];
+
         public string CardColor { get; set; }
         public string BackgroundColor { get; set; }
         string color { get; set; }
@@ -91,7 +92,8 @@ namespace MTG.ViewModel
         {
             Cards = new ObservableCollection<CardModel>();
             _allCards = new List<CardModel> ();
-            GetCards(1000);
+            //GetCards(50);
+            GetAllCards();
             PerformFiltering();
 
         }
@@ -105,50 +107,108 @@ namespace MTG.ViewModel
             var result = await httpClient.GetStringAsync(uri);
             JObject data = (JObject)JsonConvert.DeserializeObject(result);
             int count = data["cards"].Count();
-            Random rm = new Random();
-            
 
-            do {
-                int index = rm.Next(count);
-                JToken test = data["cards"][index]["imageUrl"] as JToken;
-                if (test != null)
+
+            var random=RandomNumbers(count, number);
+
+           foreach(int index in random)
+            {                
+                JToken img = data["cards"][index]["imageUrl"] as JToken;
+                if (img != null)
                 {
-                
+
 
                     string name = data["cards"][index]["name"].ToString();
-                    string image = data["cards"][index]["imageUrl"].ToString();
+                    string image = img.ToString();
                     string checkColor = data["cards"][index]["colors"][0].ToString();
 
                     switch (checkColor) {
                         case "Blue":
-                            color = "#0075BD";                           
+                            color = "#0075BD";
                             color2 = "#CDEEFD";
                             break;
                         case "White":
                             color = "#F6E9D2";
-                            color2 = "#fffdeb";                          
+                            color2 = "#fffdeb";
                             break;
                         case "Black":
-                            color = "#3D3D3D";                        
+                            color = "#3D3D3D";
                             color2 = "LightGray";
                             break;
                         case "Green":
                             color = "#228C22";
-                            color2 = "#228C22";                         
+                            color2 = "#228C22";
                             break;
                     }
-                 
+
                     CardModel card = new CardModel(name, image, color, color2);
                     _allCards.Add(card);
                     Cards.Add(card);
                     number--;
                 }
                 else {
-                  
+
                 }
 
-                } while (number>0);
+            };
         }
+
+        public async void GetAllCards()
+        {
+            Uri baseURI = new Uri("https://api.magicthegathering.io/v1/cards/");
+            Uri uri = new Uri(baseURI.ToString());
+            HttpClient httpClient = new HttpClient();
+            var result = await httpClient.GetStringAsync(uri);
+            JObject data = (JObject)JsonConvert.DeserializeObject(result);
+            int count = data["cards"].Count();
+
+
+          
+
+            for(int index =0; index<count;index++)
+            {
+                JToken img = data["cards"][index]["imageUrl"] as JToken;
+                if (img != null)
+                {
+
+
+                    string name = data["cards"][index]["name"].ToString();
+                    string image = img.ToString();
+                    string checkColor = data["cards"][index]["colors"][0].ToString();
+
+                    switch (checkColor)
+                    {
+                        case "Blue":
+                            color = "#0075BD";
+                            color2 = "#CDEEFD";
+                            break;
+                        case "White":
+                            color = "#F6E9D2";
+                            color2 = "#fffdeb";
+                            break;
+                        case "Black":
+                            color = "#3D3D3D";
+                            color2 = "LightGray";
+                            break;
+                        case "Green":
+                            color = "#228C22";
+                            color2 = "#228C22";
+                            break;
+                    }
+
+                    CardModel card = new CardModel(name, image, color, color2);
+                    _allCards.Add(card);
+                    Cards.Add(card);
+                }
+                else
+                {
+
+                }
+
+            };
+        }
+
+
 
         private void PerformFiltering()
         {
@@ -183,5 +243,19 @@ namespace MTG.ViewModel
             }
         }
 
+
+        public HashSet<int> RandomNumbers(int length, int Numbers)
+        {
+            HashSet<int> cards = new HashSet<int>();
+            Random rm = new Random();
+
+            for (int i = 0; cards.Count < Numbers; i++)
+            {
+                int nValue = rm.Next(length);
+                cards.Add(nValue);
+            }
+            return cards;
+
+        }
     }
 }

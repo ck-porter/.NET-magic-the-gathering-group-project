@@ -148,18 +148,18 @@ namespace MTG
             do
             {
                 int index = rm.Next(count);
+                JToken na = data["cards"][index]["name"] as JToken;
                 JToken img = data["cards"][index]["imageUrl"] as JToken;
                 JToken pow = data["cards"][index]["power"] as JToken;
                 JToken toug = data["cards"][index]["toughness"] as JToken;
                 JToken ty = data["cards"][index]["type"] as JToken;
                 if (img != null && pow != null && toug != null && ty != null && pow.ToString() != "*")
                 {
-
-                    string name = data["cards"][index]["name"].ToString();
-                    string image = data["cards"][index]["imageUrl"].ToString();
-                    string power = data["cards"][index]["power"].ToString();
-                    string toughness = data["cards"][index]["toughness"].ToString();
-                    string type = data["cards"][index]["type"].ToString();
+                    string name = na.ToString();
+                    string image = img.ToString();
+                    string power = pow.ToString();
+                    string toughness = toug.ToString();
+                    string type = ty.ToString();
                     CharacterModel newRoll = new CharacterModel(name, image, type, power, toughness);
                     roles.Add(newRoll);
                     number--;
@@ -172,5 +172,8 @@ namespace MTG
 
             } while (number > 0);
         }
+        
+    
     }
+
 }
