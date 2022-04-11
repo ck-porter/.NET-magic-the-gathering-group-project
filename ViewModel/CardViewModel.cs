@@ -107,7 +107,10 @@ namespace MTG.ViewModel
             var result = await httpClient.GetStringAsync(uri);
             JObject data = (JObject)JsonConvert.DeserializeObject(result);
             int count = data["cards"].Count();
-
+            
+            //Make the number of cards drawn will not exceed the total number of cards provided by the api
+            if (number>count)        
+                number = count;
 
             var random=RandomNumbers(count, number);
 
