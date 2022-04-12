@@ -52,6 +52,8 @@ namespace MTG.ViewModel
                 {
                     CardName = "";
                     CardImageSource = null;
+
+                    //if card is null, default card color and background color to white
                     CardColor = "White";
                     BackgroundColor = "White";
                 }
@@ -130,8 +132,11 @@ namespace MTG.ViewModel
 
                     string name = data["cards"][index]["name"].ToString();
                     string image = img.ToString();
+
+                    //grab the color of card
                     string checkColor = data["cards"][index]["colors"][0].ToString();
 
+                    //select the two background colors based off card color
                     switch (checkColor) {
                         case "Blue":
                             color = "#0075BD";
@@ -235,13 +240,20 @@ namespace MTG.ViewModel
                 _filter = "";
             }
 
+            //If _filter has a value (ie. user entered something in Filter textbox)
+            //Lower-case and trim string
             var lowerCaseFilter = Filter.ToLowerInvariant().Trim();
 
+            //Use LINQ query to get all personmodel names that match filter text, as a list
             var result =
+                //d = the column or letter that is in the filter
                 _allCards.Where(d => d.Name.ToLowerInvariant()
+                //like a wildcard, so it will look for the letter anywhere in the string
                 .Contains(lowerCaseFilter))
                 .ToList();
 
+            //Get list of values in current filtered list that we want to remove
+            //(ie. don't meet new filter criteria)
             var toRemove = Cards.Except(result).ToList();
 
             foreach (var x in toRemove)
@@ -251,6 +263,7 @@ namespace MTG.ViewModel
 
             var resultCount = result.Count;
 
+            // Add back in correct order.
             for (int i = 0; i < resultCount; i++)
             {
                 var resultItem = result[i];
