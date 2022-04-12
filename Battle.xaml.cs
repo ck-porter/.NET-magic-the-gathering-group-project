@@ -136,10 +136,13 @@ namespace MTG
         // draw cards that have all needed properties from the api
         public async Task GetRoleCards(int number, List<CharacterModel> roles)
         {
+            //Get data in json format from Api
             Uri baseURI = new Uri("https://api.magicthegathering.io/v1/cards/");
             Uri uri = new Uri(baseURI.ToString());
             HttpClient httpClient = new HttpClient();
             var result = await httpClient.GetStringAsync(uri);
+            
+            ////Deserialize API data into Object type
             JObject data = (JObject)JsonConvert.DeserializeObject(result);
             int count = data["cards"].Count();
             Random rm = new Random();
@@ -148,6 +151,8 @@ namespace MTG
             do
             {
                 int index = rm.Next(count);
+                 
+                //get the key value through the JToken
                 JToken na = data["cards"][index]["name"] as JToken;
                 JToken img = data["cards"][index]["imageUrl"] as JToken;
                 JToken pow = data["cards"][index]["power"] as JToken;
@@ -160,7 +165,11 @@ namespace MTG
                     string power = pow.ToString();
                     string toughness = toug.ToString();
                     string type = ty.ToString();
+                    
+                    //Create a new Character card object
                     CharacterModel newRoll = new CharacterModel(name, image, type, power, toughness);
+                   
+                    //add the newRoll to the roles list
                     roles.Add(newRoll);
                     number--;
 

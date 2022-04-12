@@ -104,7 +104,11 @@ namespace MTG.ViewModel
             Uri baseURI = new Uri("https://api.magicthegathering.io/v1/cards/");
             Uri uri = new Uri(baseURI.ToString());
             HttpClient httpClient = new HttpClient();
+            
+            //Get data in json format from Api
             var result = await httpClient.GetStringAsync(uri);
+           
+             //Deserialize API data into Object type
             JObject data = (JObject)JsonConvert.DeserializeObject(result);
             int count = data["cards"].Count();
             
@@ -114,9 +118,12 @@ namespace MTG.ViewModel
 
             var random=RandomNumbers(count, number);
 
-           foreach(int index in random)
+            //Iterate over the random hash set
+            foreach(int index in random)
             {                
+                //get the key value through the JToken
                 JToken img = data["cards"][index]["imageUrl"] as JToken;
+                //count the size of cards
                 if (img != null)
                 {
 
@@ -162,15 +169,23 @@ namespace MTG.ViewModel
             Uri uri = new Uri(baseURI.ToString());
             HttpClient httpClient = new HttpClient();
             var result = await httpClient.GetStringAsync(uri);
+           
+            //Deserialize API data into Object type
+
             JObject data = (JObject)JsonConvert.DeserializeObject(result);
+            
+            //count the size of cards
             int count = data["cards"].Count();
 
 
-          
+            //iterate over all cards
 
             for(int index =0; index<count;index++)
             {
+                //get the key value through the JToken
                 JToken img = data["cards"][index]["imageUrl"] as JToken;
+                
+                //When the image property is not null
                 if (img != null)
                 {
 
@@ -198,7 +213,7 @@ namespace MTG.ViewModel
                             color2 = "#228C22";
                             break;
                     }
-
+                    //Create a new card object
                     CardModel card = new CardModel(name, image, color, color2);
                     _allCards.Add(card);
                     Cards.Add(card);
@@ -246,9 +261,11 @@ namespace MTG.ViewModel
             }
         }
 
-
+        //Generate unique random numbers
         public HashSet<int> RandomNumbers(int length, int Numbers)
         {
+            //Filter out duplicate random numbers by hashset
+            
             HashSet<int> cards = new HashSet<int>();
             Random rm = new Random();
 
