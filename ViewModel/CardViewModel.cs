@@ -216,15 +216,23 @@ namespace MTG.ViewModel
                 _filter = "";
             }
 
+            //If _filter has a value (ie. user entered something in Filter textbox)
+            //Lower-case and trim string
             var lowerCaseFilter = Filter.ToLowerInvariant().Trim();
 
+            //Use LINQ query to get all personmodel names that match filter text, as a list
             var result =
+                //d = the column or letter that is in the filter
                 _allCards.Where(d => d.Name.ToLowerInvariant()
+                //like a wildcard, so it will look for the letter anywhere in the string
                 .Contains(lowerCaseFilter))
                 .ToList();
 
+            //Get list of values in current filtered list that we want to remove
+            //(ie. don't meet new filter criteria)
             var toRemove = Cards.Except(result).ToList();
 
+            //Loop to remove items that fail filter
             foreach (var x in toRemove)
             {
                 Cards.Remove(x);
@@ -232,6 +240,7 @@ namespace MTG.ViewModel
 
             var resultCount = result.Count;
 
+            // Add back in correct order.
             for (int i = 0; i < resultCount; i++)
             {
                 var resultItem = result[i];
