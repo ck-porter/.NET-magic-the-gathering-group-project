@@ -9,12 +9,9 @@ namespace MTG.Models
     public class CharacterModel
     {
         public string Name { get; set; }
-
         public string Image { get; set; }
         public string Type { get; set; }
-
         public string Power { get; set; }  //attack damage
-
         public string Toughness { get; set; }  //health points
 
         public CharacterModel(string name, string image, string type, string power, string toughness)

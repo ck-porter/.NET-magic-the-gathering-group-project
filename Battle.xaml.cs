@@ -160,14 +160,9 @@ namespace MTG
                     string power = pow.ToString();
                     string toughness = toug.ToString();
                     string type = ty.ToString();
-                    CharacterModel newRoll = new CharacterModel(name, image, type, power, toughness);
-                    roles.Add(newRoll);
+                    CharacterModel newRole = new CharacterModel(name, image, type, power, toughness);
+                    roles.Add(newRole);
                     number--;
-
-                }
-                else
-                {
-
                 }
 
             } while (number > 0);
