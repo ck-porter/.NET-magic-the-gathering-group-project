@@ -11,11 +11,12 @@
 
     <Page.Resources>
         <Storyboard x:Key="GradientAnimation" RepeatBehavior="Forever" SpeedRatio="0.2">
-            <ColorAnimationUsingKeyFrames
+            <ColorAnimationUsingKeyFrames 
                 Storyboard.TargetName="AboutPageGrid"
                 Storyboard.TargetProperty="(UIElement.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)"
                 EnableDependentAnimation="True"
                 BeginTime="-0:0:0.5">
+                <!--LinearColorKeyFrame allows colour of the page to be changed, setting KeyTime and Value-->
                 <LinearColorKeyFrame KeyTime="0:0:0" Value="#FF0000"/>
                 <LinearColorKeyFrame KeyTime="0:0:1" Value="#FFFF00"/>
                 <LinearColorKeyFrame KeyTime="0:0:2" Value="#00FF00"/>
@@ -49,6 +50,7 @@
 
         <StackPanel VerticalAlignment="Center" Margin="10,0">
 
+            <!--TextBlock used to display the aboutscreen information - using <lineBreak></lineBreak> to separate lines-->
             <TextBlock
                 x:Name="AboutText"
                 Margin="6"
@@ -63,13 +65,14 @@
                  Contact Information: w0286867@nscc.ca (CK Porter), w0430394@nscc.ca (Jade Ye), w0425445@nscc.ca (Paul Oteng), w0403665@nscc.ca (Yue Niu)
             </TextBlock>
 
+            <!--Button with event for the text to speech feature--> 
             <Button x:Name="WarriorButton" Content="Click me Warrior!" Click="Button_Click_Sound" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,0,0,2" FontFamily="Tempus Sans ITC"/>
 
         </StackPanel>
     </Grid>
 
 
-
+<!--commandBar with Backbutton-->
     <Page.TopAppBar>
         <CommandBar Background="LightBlue"  >
             <CommandBar.Content>
@@ -80,12 +83,10 @@
                         ToolTipService.ToolTip="Back" 
                         VerticalAlignment="Top"/>
             </CommandBar.Content>
-
+<!--Exit option in the commandBar-->
             <CommandBar.SecondaryCommands>
-                
                 <AppBarButton Label="Exit" Click="Exit_Click"/>
             </CommandBar.SecondaryCommands>
-
         </CommandBar>
     </Page.TopAppBar>
 

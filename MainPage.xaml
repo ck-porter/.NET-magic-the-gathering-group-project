@@ -49,15 +49,14 @@
     </Grid>
 
     <Page.TopAppBar>
-        <CommandBar Background="{x:Bind CardViewModel.CardColor, Mode=TwoWay}">
+        <CommandBar Background="{x:Bind CardViewModel.CardColor, Mode=TwoWay}"> <!--colour being bindied to the commandBar-->
             <AppBarButton Icon="Favorite" Click="Battle_Button_Click" ToolTipService.ToolTip="Battle!" >         
             </AppBarButton>
-           
+            <!--Secondary option in the commandBar-->
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="About" Click="About_Click"/>              
-                <AppBarButton Label="Exit" Click="Exit_Click"/>
+                <AppBarButton Label="About" Click="About_Click"/>    <!--About option in the commandBar-->
+                <AppBarButton Label="Exit" Click="Exit_Click"/>      <!--Exit option in the commandBar-->
             </CommandBar.SecondaryCommands>
-
         </CommandBar>
     </Page.TopAppBar>
 </Page>
