@@ -203,11 +203,6 @@ namespace MTG.ViewModel
                     _allCards.Add(card);
                     Cards.Add(card);
                 }
-                else
-                {
-
-                }
-
             };
         }
 
