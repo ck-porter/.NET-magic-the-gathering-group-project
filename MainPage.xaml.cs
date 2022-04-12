@@ -28,6 +28,9 @@ namespace MTG
         {
             this.InitializeComponent();
             this.CardViewModel = new ViewModel.CardViewModel();
+
+            //set the default card color to white on startup
+            //without this the program would crash because no card would be selected yet
             CardViewModel.CardColor = "White";
             CardViewModel.BackgroundColor = "White";
         }

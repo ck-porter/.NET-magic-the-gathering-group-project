@@ -52,6 +52,8 @@ namespace MTG.ViewModel
                 {
                     CardName = "";
                     CardImageSource = null;
+
+                    //if card is null, default card color and background color to white
                     CardColor = "White";
                     BackgroundColor = "White";
                 }
@@ -123,8 +125,9 @@ namespace MTG.ViewModel
 
                     string name = data["cards"][index]["name"].ToString();
                     string image = img.ToString();
-                    string checkColor = data["cards"][index]["colors"][0].ToString();
+                    string checkColor = data["cards"][index]["colors"][0].ToString();  //grab the color of card
 
+                    //select the two background colors based off card color
                     switch (checkColor) {
                         case "Blue":
                             color = "#0075BD";
@@ -164,9 +167,7 @@ namespace MTG.ViewModel
             var result = await httpClient.GetStringAsync(uri);
             JObject data = (JObject)JsonConvert.DeserializeObject(result);
             int count = data["cards"].Count();
-
-
-          
+                                 
 
             for(int index =0; index<count;index++)
             {
